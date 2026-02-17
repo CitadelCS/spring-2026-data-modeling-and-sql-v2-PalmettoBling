@@ -1,11 +1,13 @@
-CREATE TABLE PUBLISHER (
+CREATE SCHEMA IF NOT EXISTS library;
+
+CREATE TABLE IF NOT EXISTS library.PUBLISHER (
     Name VARCHAR(100),
     Address VARCHAR(255),
     Phone VARCHAR(15),
     PRIMARY KEY (Name)
 );
 
-CREATE TABLE BOOK (
+CREATE TABLE IF NOT EXISTS library.BOOK (
     Book_id serial,
     Title VARCHAR(100),
     Publisher_name VARCHAR(100),
@@ -13,14 +15,14 @@ CREATE TABLE BOOK (
     FOREIGN KEY (Publisher_name) REFERENCES PUBLISHER(Name)
 );
 
-CREATE TABLE LIBRARY_BRANCH (
+CREATE TABLE IF NOT EXISTS library.LIBRARY_BRANCH (
     Branch_id INT,
     Branch_name INT,
     Address VARCHAR(255),
     PRIMARY KEY (Branch_id)
 );
 
-CREATE TABLE BORROWER (
+CREATE TABLE IF NOT EXISTS library.BORROWER (
     Card_no INT,
     Name VARCHAR(100),
     Address VARCHAR(255),
@@ -28,14 +30,14 @@ CREATE TABLE BORROWER (
     PRIMARY KEY (Card_no)
 );
 
-CREATE TABLE BOOK_AUTHORS (
+CREATE TABLE IF NOT EXISTS library.BOOK_AUTHORS (
     Book_id INT,
     Author_name VARCHAR(100),
     PRIMARY KEY (Author_name),
     FOREIGN KEY (Book_id) REFERENCES BOOK(Book_id)
 );
 
-CREATE TABLE BOOK_COPIES (
+CREATE TABLE IF NOT EXISTS library.BOOK_COPIES (
     Book_id INT,
     Branch_id INT,
     No_of_copies INT,
@@ -43,7 +45,7 @@ CREATE TABLE BOOK_COPIES (
     FOREIGN KEY (Branch_id) REFERENCES LIBRARY_BRANCH(Branch_id)
 );
 
-CREATE TABLE BOOK_LOANS (
+CREATE TABLE IF NOT EXISTS library.BOOK_LOANS (
     Book_id INT,
     Branch_id INT,
     Card_no INT,
